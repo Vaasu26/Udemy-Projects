@@ -1,0 +1,12 @@
+.image{
+    width : 250px;
+    height: 250px;
+    padding-bottom: 20px;
+    border-radius: 20%;
+    border: 1px solid black;
+}
+
+h5{
+    margin-bottom: 30px;
+    padding-top: 20px;
+}
