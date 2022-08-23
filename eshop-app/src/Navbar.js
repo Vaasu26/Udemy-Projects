@@ -34,7 +34,7 @@ const Navbar = () => {
       <div className="navigation">
       <div className="nav-item">
         {!state.isUserLoggedIn ? <span className="nav-item-line1">Hello Guest</span> : <span className="nav-item-line1">Hello {state.name}</span>}
-        {!state.isUserLoggedIn ? <div className="nav-item-line2" onClick = {signInOrSignOut}>Sign In</div> : <div className="nav-item-line2" onClick = {signInOrSignOut}>Sign Out</div>}
+        {!state.isUserLoggedIn ? <button className="nav-item-line2" style={{backgroundColor : "#131921", color : "white", border : "none"}} onClick = {signInOrSignOut}>Sign In</button> : <button className="nav-item-line2" style={{backgroundColor : "#131921", color : "white", border : "none"}} onClick = {signInOrSignOut}>Sign Out</button>}
       </div>
         <div className="nav-item">
           <span className="nav-item-line1">Your</span>
