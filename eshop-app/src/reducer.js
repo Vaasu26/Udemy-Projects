@@ -1,5 +1,9 @@
 export const initialState = {
-    basket : []
+    basket : Array(0),
+    name : "",
+    isUserLoggedIn : false,
+    email : "",
+    password : ""
 }
 
 export const basketTotal = (basket) => {
@@ -13,6 +17,26 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 basket : [...state.basket, action.item]
+            }
+
+        case "USER_LOGGED_IN" :
+            return{
+                ...state,
+                basket : [...action.basket],
+                name : action.name,
+                email : action.email,
+                password : action.password,
+                isUserLoggedIn : action.isUserLoggedIn
+            }
+
+        case "SIGN_OUT_TO_LOGIN_PAGE" :
+            return{
+                ...state,
+                basket : [...action.basket],
+                isUserLoggedIn : action.isUserLoggedIn,
+                name : "",
+                email : "",
+                password : ""
             }
 
         case "REMOVE_FROM_BASKET" :

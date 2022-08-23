@@ -1,8 +1,21 @@
 import React from 'react'
 import './home.css'
 import Product from './Product'
+import { useStateValue } from './StateProvider'
 
 const Home = () => {
+    const [state, dispatch] = useStateValue();
+    var data = 
+        {
+            signUpPassword : state.password,
+            signUpEmail : state.email,
+            basket : state.basket
+        }
+
+        if(state.name.length > 0){
+            localStorage.setItem(state.name, JSON.stringify(data))
+        }
+
   return (
     <div className='home'>
         <div className="home-container">

@@ -5,7 +5,18 @@ import Subtotal from "./Subtotal"
 import { useStateValue } from './StateProvider';
 
 const Checkout = () => {
-    const[{basket}, dispatch] = useStateValue();
+    const[state, dispatch] = useStateValue();
+    var data = 
+        {
+            signUpPassword : state.password,
+            signUpEmail : state.email,
+            basket : state.basket
+        }
+
+    if(state.name.length > 0){
+        localStorage.setItem(state.name, JSON.stringify(data))
+    }
+    
   return (
     <div className='checkout'>
         <div className="checkout-left">
@@ -13,7 +24,7 @@ const Checkout = () => {
             <div>
                 <h2 className="checkout-title">Your Shopping Basket</h2>
             </div>
-            {basket.map(bask => {
+            {state.basket.map(bask => {
                 return (
                     <CheckoutProduct 
                         image = {bask.image}

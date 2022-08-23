@@ -2,37 +2,63 @@ import React, { useState } from 'react';
 import './Login.css'
 import { Link, useNavigate } from "react-router-dom";
 import StorefrontIcon from '@material-ui/icons/Storefront';
-import { auth } from './firebase'
+import {useStateValue} from './StateProvider'
 
 function Login() {
+    const [state, dispatch] = useStateValue();
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const signIn = e => {
         e.preventDefault();
-
-        auth
-            .signInWithEmailAndPassword(email, password)
-            .then(auth => {
-                navigate('/');
-            })
-            .catch(error => alert(error.message))
-
-    }
-
-    const register = e => {
-        e.preventDefault();
-
-        auth
-            .createUserWithEmailAndPassword(email, password)
-            .then((auth) => {
-                if (auth) {
-                    navigate('/');
-                }
-            })
-            .catch(error => alert(error.message))
-
+        const values = Object.values(localStorage);
+        console.log(values)
+        let count = 0
+        values.map(val => {
+            const correctedValues = JSON.parse(val);
+            if(email === correctedValues.signUpEmail && password === correctedValues.signUpPassword){
+                alert('Login Successfull');
+                navigate("/");
+                const basketItems = correctedValues.basket
+                console.log(basketItems)
+                const keys = Object.keys(localStorage);
+                keys.map(key => {
+                    const data = localStorage.getItem(key);
+                    const correctedData = JSON.parse(data);
+                    if(correctedData.signUpEmail === email){
+                        if(basketItems.length === 0) {
+                            dispatch({
+                                type : "USER_LOGGED_IN",
+                                name : key,
+                                password : password,
+                                email : email,
+                                isUserLoggedIn : true,
+                                basket : []
+                            })
+                        }
+                        else{
+                            basketItems.map(bask => {
+                                dispatch({
+                                    type : "USER_LOGGED_IN",
+                                    name : key,
+                                    password : password,
+                                    email : email,
+                                    isUserLoggedIn : true,
+                                    basket : basketItems
+                                })
+                            })
+                        }
+                    }
+                })
+            }
+            else{
+                count ++
+            }
+            if(values.length === count){
+                alert('Login Insuccessfull')
+            }
+        })
     }
 
     return (
@@ -61,8 +87,9 @@ function Login() {
                     By signing-in you agree to the eShop Website Conditions of Use & Sale. Please
                     see our Privacy Notice, our Cookies Notice and our Interest-Based Ads Notice.
                 </p>
-
-                <button className='login__registerButton' onClick={register}>Create your eShop Account</button>
+                <Link to = "/register" style={{textDecoration : "none"}}>
+                    <button className='login__registerButton'>Create your eShop Account</button>
+                </Link>
             </div>
         </div>
     )

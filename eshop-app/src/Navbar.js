@@ -3,13 +3,22 @@ import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 import SearchIcon from '@material-ui/icons/Search';
 import "./navbar.css";
-import { useContext } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import { useStateValue } from './StateProvider';
 
 const Navbar = () => {
-  const [{basket}, dispatch] = useStateValue();
-  console.log(basket)
+  const [state, dispatch] = useStateValue();
+  const navigate = useNavigate();
+
+  const signInOrSignOut = () => {
+    dispatch({
+      type : "SIGN_OUT_TO_LOGIN_PAGE",
+      basket : [],
+      isUserLoggedIn : false
+    })
+    navigate('/login')
+  }
+
   return (
     <div className='header'>
       <Link to = "/" style={{textDecoration : "none"}}>
@@ -23,12 +32,10 @@ const Navbar = () => {
         <SearchIcon className='search-icon'/>
       </div>
       <div className="navigation">
-        <Link to = "/login" style={{textDecoration : "none"}}>
-          <div className="nav-item">
-            <span className="nav-item-line1">Hello Guest</span>
-            <div className="nav-item-line2">Sign In</div>
-          </div>
-        </Link>
+      <div className="nav-item">
+        {!state.isUserLoggedIn ? <span className="nav-item-line1">Hello Guest</span> : <span className="nav-item-line1">Hello {state.name}</span>}
+        {!state.isUserLoggedIn ? <div className="nav-item-line2" onClick = {signInOrSignOut}>Sign In</div> : <div className="nav-item-line2" onClick = {signInOrSignOut}>Sign Out</div>}
+      </div>
         <div className="nav-item">
           <span className="nav-item-line1">Your</span>
           <span className="nav-item-line2">Shop</span>
@@ -36,7 +43,8 @@ const Navbar = () => {
         <Link to = "/checkout" style = {{textDecoration : "none"}}>
           <div className='item-basket'>
               <ShoppingBasketIcon />
-            <span className="nav-item-line2 nav-item-basketCount">{basket.length}</span>
+              {console.log(state.basket)}
+            <span className="nav-item-line2 nav-item-basketCount">{state.basket.length}</span>
           </div>
         </Link>
       </div>
