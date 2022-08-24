@@ -24,14 +24,16 @@ const Checkout = () => {
             <div>
                 <h2 className="checkout-title">Your Shopping Basket</h2>
             </div>
-            {state.basket.map(bask => {
+            {state.basket.map((bask, index) => {
                 return (
                     <CheckoutProduct 
+                        index = {index}
                         image = {bask.image}
                         id = {bask.id}
                         title = {bask.title}
                         price = {bask.price}
                         rating = {bask.rating}
+                        quantity = {bask.quantity}
                     />
                 )
             })}

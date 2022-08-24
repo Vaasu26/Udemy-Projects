@@ -7,7 +7,7 @@ export const initialState = {
 }
 
 export const basketTotal = (basket) => {
-    return(basket?.reduce((amount, item) => item.price + amount, 0));
+    return(basket?.reduce((amount, item) => (item.itemQuantity>1 ? item.price * item.itemQuantity : item.price) + amount, 0));
 }
 
 
@@ -57,6 +57,28 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 basket : newBasket
+            }
+
+        case "DECREMENT_QUANTITY" :
+            state.basket.map(bask => {
+                if(bask.id === action.item.id){
+                    bask.itemQuantity = action.item.itemQuantity
+                }
+            })
+            return{
+                ...state,
+                basket : [...state.basket]
+            }
+
+        case "INCREMENT_QUANTITY" :
+            state.basket.map(bask => {
+                if(bask.id === action.item.id){
+                    bask.itemQuantity = action.item.itemQuantity
+                }
+            })
+            return{
+                ...state,
+                basket : [...state.basket]
             }
 
         default :

@@ -3,6 +3,7 @@
     padding: 20px;
     background-color: white;
     height: max-content;
+    width: 100%;
 }
 
 .checkout-ad {
@@ -19,4 +20,10 @@
 .checkout-left {
     display: flex;
     flex-direction: column;
+    width: 80%;
+}
+
+.checkout-right {
+    display: flex;
+    width: 20%;
 }

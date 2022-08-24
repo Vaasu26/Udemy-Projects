@@ -1,21 +1,39 @@
-import React, {useContext} from 'react'
+import React, {useState} from 'react'
 import './product.css'
 import { useStateValue } from './StateProvider'
 
 const Product = (props) => {
     const [state, dispatch] = useStateValue();
+    const[productButton, setProductButton] = useState("ADD TO BASKET");
 
     const addToBasket = () => {
-        dispatch({
-            type : "ADD_TO_BASKET",
-            item : {
-                id : props.id,
-                image : props.image,
-                price : props.price,
-                rating : props.rating,
-                title : props.title
-            }
-        })
+        productButton === "ADD TO BASKET" ? setProductButton("REMOVE FROM BASKET") : setProductButton("ADD TO BASKET");
+        if(productButton === "ADD TO BASKET"){
+            dispatch({
+                type : "ADD_TO_BASKET",
+                item : {
+                    id : props.id,
+                    image : props.image,
+                    price : props.price,
+                    rating : props.rating,
+                    title : props.title,
+                    quantity : props.quantity+1
+                }
+            })
+        }
+        else{
+            dispatch({
+                type : "REMOVE_FROM_BASKET",
+                item : {
+                    id : props.id,
+                    image : props.image,
+                    title : props.title,
+                    price : props.price,
+                    rating : props.rating,
+                    quantity : props.quantity
+                }
+            })
+        }
     }
 
   return (
@@ -35,7 +53,7 @@ const Product = (props) => {
             </div>
         </div>
         <img src = {props.image} alt = ""></img>
-        <button onClick={addToBasket}>Add to Basket</button>
+        <button onClick={addToBasket}>{productButton}</button>
     </div>
   )
 }

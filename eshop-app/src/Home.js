@@ -27,6 +27,7 @@ const Home = () => {
                     price={11.96}
                     rating={5}
                     image="https://images-na.ssl-images-amazon.com/images/I/71mEsHyzSCL._SL1000_.jpg"
+                    quantity={0}
                 />
                 <Product
                     id="49538094"
@@ -34,6 +35,7 @@ const Home = () => {
                     price={239.0}
                     rating={4}
                     image="https://images-na.ssl-images-amazon.com/images/I/81D8pNFmWzL._SL1500_.jpg"
+                    quantity={0}
                 />
                 </div>
 
@@ -44,6 +46,7 @@ const Home = () => {
                         price={199.99}
                         rating={3}
                         image="https://images-eu.ssl-images-amazon.com/images/I/514kNkerQ0L._SY264_BO1,204,203,200_QL40_FMwebp_.jpg"
+                        quantity={0}
                     />
                     <Product
                         id="23445930"
@@ -51,6 +54,7 @@ const Home = () => {
                         price={98.99}
                         rating={5}
                         image="https://media.very.co.uk/i/very/P6LTG_SQ1_0000000071_CHARCOAL_SLf?$300x400_retinamobilex2$"
+                        quantity={0}
                     />
                     <Product
                         id="3254354345"
@@ -58,6 +62,7 @@ const Home = () => {
                         price={598.99}
                         rating={4}
                         image="https://images-na.ssl-images-amazon.com/images/I/816ctt5WV5L._AC_SX385_.jpg"
+                        quantity={0}
                     />
                 </div>
 
@@ -68,6 +73,7 @@ const Home = () => {
                         price={1094.98}
                         rating={4}
                         image="https://images-na.ssl-images-amazon.com/images/I/6125mFrzr6L._AC_SX355_.jpg"
+                        quantity={0}
                     />
             </div>
         </div>

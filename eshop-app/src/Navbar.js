@@ -43,7 +43,6 @@ const Navbar = () => {
         <Link to = "/checkout" style = {{textDecoration : "none"}}>
           <div className='item-basket'>
               <ShoppingBasketIcon />
-              {console.log(state.basket)}
             <span className="nav-item-line2 nav-item-basketCount">{state.basket.length}</span>
           </div>
         </Link>

@@ -13,7 +13,6 @@ function Login() {
     const signIn = e => {
         e.preventDefault();
         const values = Object.values(localStorage);
-        console.log(values)
         let count = 0
         values.map(val => {
             const correctedValues = JSON.parse(val);
@@ -38,15 +37,13 @@ function Login() {
                             })
                         }
                         else{
-                            basketItems.map(bask => {
-                                dispatch({
-                                    type : "USER_LOGGED_IN",
-                                    name : key,
-                                    password : password,
-                                    email : email,
-                                    isUserLoggedIn : true,
-                                    basket : basketItems
-                                })
+                            dispatch({
+                                type : "USER_LOGGED_IN",
+                                name : key,
+                                password : password,
+                                email : email,
+                                isUserLoggedIn : true,
+                                basket : basketItems
                             })
                         }
                     }
