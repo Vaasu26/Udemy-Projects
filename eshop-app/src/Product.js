@@ -17,9 +17,10 @@ const Product = (props) => {
                     price : props.price,
                     rating : props.rating,
                     title : props.title,
-                    quantity : props.quantity+1
+                    itemQuantity : props.quantity+1
                 }
             })
+            console.log(state.basket[0].itemQuantity)
         }
         else{
             dispatch({
@@ -30,7 +31,7 @@ const Product = (props) => {
                     title : props.title,
                     price : props.price,
                     rating : props.rating,
-                    quantity : props.quantity
+                    itemQuantity : props.quantity
                 }
             })
         }
