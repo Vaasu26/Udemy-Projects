@@ -20,7 +20,6 @@ const Product = (props) => {
                     itemQuantity : props.quantity+1
                 }
             })
-            console.log(state.basket[0].itemQuantity)
         }
         else{
             dispatch({
